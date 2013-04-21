@@ -19,7 +19,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'normalize-rails', '~> 2.0.1'
   gem 'bourbon'
-
+	gem "twitter-bootstrap-rails"
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
