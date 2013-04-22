@@ -1,4 +1,7 @@
 Statusbot::Application.routes.draw do
+  resources :statuses
+
+
   resources :friends
 
 
