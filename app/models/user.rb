@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :provider, :fb_id, :email, :digest_frequency, :oauth_token, :oauth_expires_at
+  attr_accessible :name, :provider, :uid, :email, :digest_frequency, :oauth_token, :oauth_expires_at
 
   has_and_belongs_to_many :friends
 

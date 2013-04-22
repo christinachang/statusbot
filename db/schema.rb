@@ -11,19 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422212257) do
-
-  create_table "_friends_old_20130421", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "fb_id"
-    t.string   "relationship_status"
-    t.date     "birthday"
-    t.boolean  "follow?"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "name"
-    t.string   "photo"
-  end
+ActiveRecord::Schema.define(:version => 20130422232101) do
 
   create_table "friends", :force => true do |t|
     t.string   "name"
@@ -50,15 +38,15 @@ ActiveRecord::Schema.define(:version => 20130422212257) do
   end
 
   create_table "users", :force => true do |t|
-    t.integer  "fb_id"
-    t.string   "email"
-    t.string   "digest_frequency"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
     t.string   "name"
     t.string   "provider"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "email"
+    t.string   "digest_frequency"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "uid"
   end
 
   create_table "users_friends", :force => true do |t|
