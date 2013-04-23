@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130422232101) do
+ActiveRecord::Schema.define(:version => 20130423004935) do
 
   create_table "friends", :force => true do |t|
     t.string   "name"
@@ -20,9 +20,9 @@ ActiveRecord::Schema.define(:version => 20130422232101) do
     t.string   "relationship_status"
     t.date     "birthday"
     t.integer  "user_id"
-    t.boolean  "follow?"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.boolean  "follow"
   end
 
   create_table "statuses", :force => true do |t|

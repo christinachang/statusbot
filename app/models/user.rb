@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
   def get_facebook_friends
     self.facebook.get_connection("me", "friends").each do |friend|
       @friend = Friend.new
-      @friend.name = friend[:name]
-      @friend.fb_id = friend[:id]
+      @friend.name = friend["name"]
+      @friend.fb_id = friend["id"]
       @friend.save
     end
   end
