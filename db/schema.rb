@@ -11,17 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423004935) do
+ActiveRecord::Schema.define(:version => 20130423215106) do
 
   create_table "friends", :force => true do |t|
-    t.string   "name"
     t.integer  "fb_id"
-    t.string   "photo"
     t.string   "relationship_status"
     t.date     "birthday"
-    t.integer  "user_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "name"
+    t.string   "photo"
     t.boolean  "follow"
   end
 
@@ -37,23 +36,23 @@ ActiveRecord::Schema.define(:version => 20130423004935) do
     t.string   "image"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.string   "provider"
-    t.string   "oauth_token"
-    t.datetime "oauth_expires_at"
-    t.string   "email"
-    t.string   "digest_frequency"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.integer  "uid"
-  end
-
-  create_table "users_friends", :force => true do |t|
+  create_table "user_friends", :force => true do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email"
+    t.string   "digest_frequency"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "name"
+    t.string   "provider"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.integer  "uid"
   end
 
 end

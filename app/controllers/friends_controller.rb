@@ -41,6 +41,7 @@ class FriendsController < ApplicationController
   # POST /friends.json
   def create
     @friend = Friend.new(params[:friend])
+    current_user.friends << @friend
 
     respond_to do |format|
       if @friend.save
