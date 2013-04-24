@@ -41,6 +41,8 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    # @friend.user_id = params[:user_id]
+    # @friend.save
 
     respond_to do |format|
       if @user.save

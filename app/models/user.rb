@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
       user.get_facebook_friends
+      # binding.pry
     end
   end
 
@@ -22,12 +23,13 @@ class User < ActiveRecord::Base
   end
 
   def get_facebook_friends
-    self.facebook.get_connection("me", "friends").each do |friend|
-      @friend = Friend.create
-      @friend.name = friend["name"]
-      @friend.fb_id = friend["id"]
-      @friend.photo = "https://graph.facebook.com/#{@friend.fb_id}/picture?width=100&height=100"
-      @friend.save
+    self.facebook.get_connection("me", "friends").each do |facebook_friend_data|
+      friend = Friend.new
+      friend.name = facebook_friend_data["name"]
+      friend.fb_id = facebook_friend_data["id"]
+      friend.photo = "https://graph.facebook.com/#{friend.fb_id}/picture?width=100&height=100" 
+      friend.save
+      self.friends << friend
     end
   end
 
