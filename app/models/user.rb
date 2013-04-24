@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :provider, :uid, :email, :digest_frequency, :oauth_token, :oauth_expires_at
+  attr_accessible :name, :provider, :uid, :email, :digest_frequency, :oauth_token, :oauth_expires_at, :friends_attributes, :user_friends_attributes
 
   has_many :user_friends
   has_many :friends, :through => :user_friends
+
+  accepts_nested_attributes_for :friends, :user_friends
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|

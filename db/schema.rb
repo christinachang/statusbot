@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423215106) do
+ActiveRecord::Schema.define(:version => 20130424181712) do
 
   create_table "friends", :force => true do |t|
     t.integer  "fb_id"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20130423215106) do
     t.datetime "updated_at",          :null => false
     t.string   "name"
     t.string   "photo"
-    t.boolean  "follow"
   end
 
   create_table "statuses", :force => true do |t|
@@ -41,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20130423215106) do
     t.integer  "friend_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "follow"
   end
 
   create_table "users", :force => true do |t|
