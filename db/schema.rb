@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424181712) do
+ActiveRecord::Schema.define(:version => 20130425010425) do
+
+  create_table "followings", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "friends", :force => true do |t|
     t.integer  "fb_id"
@@ -40,7 +47,6 @@ ActiveRecord::Schema.define(:version => 20130424181712) do
     t.integer  "friend_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.boolean  "follow"
   end
 
   create_table "users", :force => true do |t|

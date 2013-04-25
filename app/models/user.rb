@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many :user_friends
   has_many :friends, :through => :user_friends
 
+  has_many :followings
+  has_many :followed_friends, :through => :followings, :class_name => "Friend", :foreign_key => :followed_friend_id, :source => :friend
+  
   accepts_nested_attributes_for :friends, :user_friends
 
   def self.from_omniauth(auth)

@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<ul><% current_user.friends.sort_by {|f| f.name}.each do |friend| %>
+<li><%= check_box (:friend_id), friend.id%><%= image_tag friend.photo %><%= friend.name %></li>
+<%end%></ul>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -7,14 +7,6 @@
     <th></th>
   </tr>
 
-<% if current_user %>
-<%= current_user.name %>
-<% end %>
-
-<ul><% current_user.friends.sort_by {|f| f.name}.each do |friend| %>
-<li><%= image_tag friend.photo %><%= friend.name %></li>
-<%end%></ul>
-
 <% @users.each do |user| %>
   <tr>
     <td><%= link_to 'Show', user %></td>
