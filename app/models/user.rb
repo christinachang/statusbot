@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
       user.get_facebook_friends
-      # binding.pry
+      user.get_facebook_friends_info
     end
   end
 
@@ -38,5 +38,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  def get_facebook_friends_info
+    # friend_array = self.friends.collect {|friend| friend.fb_id}
+    # self.friends.each do |friend|
+    #   data_hash = self.facebook.get_object(friend.fb_id, :fields => "relationship_status,birthday")
+    #   friend.relationship_status = data_hash["relationship_status"]
+    #   friend.birthday = data_hash["birthday"]
+    #   friend.save
+    # end
+    friend_array = self.friends.collect {|friend| friend.fb_id}
+    nested_hash = self.facebook.get_objects(friend_array, :fields => "relationship_status,birthday")
+    
+    nested_hash.each do |id, data_hash|
+      friend = self.friends.find_by_fb_id(id.to_i)
+      friend.relationship_status = data_hash["relationship_status"]
+      friend.birthday = data_hash["birthday"]
+      friend.save
+    end
+  end
 
 end
