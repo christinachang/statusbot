@@ -39,7 +39,6 @@ class User < ActiveRecord::Base
   end
 
   def get_facebook_friends_info
-    # friend_array = self.friends.collect {|friend| friend.fb_id}
     # self.friends.each do |friend|
     #   data_hash = self.facebook.get_object(friend.fb_id, :fields => "relationship_status,birthday")
     #   friend.relationship_status = data_hash["relationship_status"]
