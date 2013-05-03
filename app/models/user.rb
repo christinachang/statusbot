@@ -1,4 +1,8 @@
+require_relative '../services/date_sanitizer'
+
 class User < ActiveRecord::Base
+  include DateSanitizer
+
   attr_accessible :name, :provider, :uid, :email, :digest_frequency, :oauth_token, :oauth_expires_at, :friends_attributes, :user_friends_attributes
 
   has_many :user_friends
@@ -51,22 +55,9 @@ class User < ActiveRecord::Base
     nested_hash.each do |id, data_hash|
       friend = self.friends.find_by_fb_id(id.to_i)
       friend.relationship_status = data_hash["relationship_status"]
-      friend.birthday = add_year(data_hash["birthday"])
+      friend.birthday = normalize_date(data_hash["birthday"])
       friend.save
     end
   end
-
-  def add_year(date)
-    unless date == nil
-      dob_array = date.split("/")
-      if dob_array.size == 2
-        dob_array[2] = "1900"
-        dob_array * "/"
-      else
-        date
-      end
-    end
-  end
-
 
 end
