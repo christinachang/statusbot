@@ -1,0 +1,4 @@
+<ul><% current_user.followings.sort_by {|f| f.friend.name }.each do |following| %>
+  <li><%= image_tag following.friend.photo %><%= following.friend.name %></li>
+<%end%>
+</ul>
