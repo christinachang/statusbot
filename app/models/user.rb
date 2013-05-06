@@ -60,4 +60,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def following?(friend)
+    self.followed_friends.include?(friend)
+  end
+
+
 end

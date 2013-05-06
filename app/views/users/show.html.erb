@@ -1,11 +1,42 @@
+<script type="text/javascript">
+
+$('document').ready(function(){
+
+$.post('')
+
+})
+
+</script>
+
 <p id="notice"><%= notice %></p>
 
-<%= form_tag('/followings', :method => :post) %>
-<ul><% current_user.friends.sort_by {|f| f.name}.each do |friend| %>
-<li><%= check_box (:friend_id), friend.id%><%= image_tag friend.photo %><%= friend.name %></li>
-<%end%></ul>
+<%#= form_tag('/followings', :method => :post) %>
+<ul><%# current_user.friends.sort_by {|f| f.name}.each do |friend| %>
+<li><%#= check_box (:friend_id), friend.id%><%#= image_tag friend.photo %><%#= friend.name %></li>
+<%#end%></ul>
 
-<%= submit_tag %>
+<!-- <div class="toggle toggle-icon">
+  <label class="toggle-radio fui-checkmark-16" for="toggleOption6"></label>
+  <input type="radio" name="toggleOptions3" id="toggleOption5" value="option5" checked="checked">
+  <label class="toggle-radio fui-cross-16" for="toggleOption5"></label>
+  <input type="radio" name="toggleOptions3" id="toggleOption6" value="option6">
+  </div> -->
+
+<ul><% current_user.friends.sort_by {|f| f.name}.each do |friend| %>
+  <li><% if current_user.following?(friend) %>
+        <%= button_to "Following", {:action => "destroy", :controller => "followings", :friend_id => friend.id}, :method => "delete", :class => "btn btn-primary active", :id => "unfollow"%>
+      <% else %>
+        <%= button_to "Follow", {:action => "create", :controller => "followings", :friend_id => friend.id}, :method => "post", :class => "btn btn-primary", :id => "follow"%>
+        <%end%>
+  <%= image_tag friend.photo %><%= friend.name %></li>
+  <%end%>
+</ul>
+
+
+
+<%#= submit_tag %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+
