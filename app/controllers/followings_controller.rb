@@ -22,7 +22,12 @@ class FollowingsController < ApplicationController
     @following.user = current_user
     @following.friend = Friend.find_by_id(params[:friend_id])
     @following.save
-    redirect_to user_path(current_user)
+
+    respond_to do |format|
+      #format.html { redirect_to user_path(current_user)}
+      format.js
+    end
+    #redirect_to user_path(current_user)
   end
 
   def destroy

@@ -2,7 +2,9 @@
 
 $('document').ready(function(){
 
-$.post('')
+
+
+$.post('', )
 
 })
 
@@ -24,9 +26,9 @@ $.post('')
 
 <ul><% current_user.friends.sort_by {|f| f.name}.each do |friend| %>
   <li><% if current_user.following?(friend) %>
-        <%= button_to "Following", {:action => "destroy", :controller => "followings", :friend_id => friend.id}, :method => "delete", :class => "btn btn-primary active", :id => "unfollow"%>
+        <%= button_to "Following", {:action => "destroy", :controller => "followings", :friend_id => friend.id, :remote => true}, :method => "delete", :class => "btn btn-primary active", :id => "unfollow"%>
       <% else %>
-        <%= button_to "Follow", {:action => "create", :controller => "followings", :friend_id => friend.id}, :method => "post", :class => "btn btn-primary", :id => "follow"%>
+        <%= button_to "Follow", {:action => "create", :controller => "followings", :friend_id => friend.id, :remote => true}, :method => "post", :class => "btn btn-primary", :id => "follow"%>
         <%end%>
   <%= image_tag friend.photo %><%= friend.name %></li>
   <%end%>

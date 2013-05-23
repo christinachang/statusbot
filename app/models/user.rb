@@ -64,5 +64,8 @@ class User < ActiveRecord::Base
     self.followed_friends.include?(friend)
   end
 
+  def get_followings_posts
+    
+  end
 
 end
